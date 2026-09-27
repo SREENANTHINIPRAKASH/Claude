@@ -1,0 +1,354 @@
+<title>SPYONAX Sector Concepts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,500..800&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#F3F5F8; --surface:#FFFFFF; --surface-2:#ECEFF5;
+  --ink:#0F1A2B; --ink-2:#35415A; --muted:#627089;
+  --rule:#D9DFE8; --rule-strong:#B4BECE;
+  --link:#2349C4;
+  --p-capital:#8F6200; --p-tech:#2450D6; --p-res:#B0461F; --p-life:#23804A; --p-research:#7446C2;
+  --mark-base:#0A1F3D; --gold:#C9A227;
+  --display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --body:"IBM Plex Sans",-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#0B1019; --surface:#111826; --surface-2:#182135;
+    --ink:#E6EBF3; --ink-2:#BFC8D8; --muted:#8E99AD;
+    --rule:#243047; --rule-strong:#35445F;
+    --link:#8FA8FF;
+    --p-capital:#E2B43F; --p-tech:#86A2FF; --p-res:#EE8A5E; --p-life:#5DC27F; --p-research:#B596F2;
+    --mark-base:#E6EBF3;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#0B1019; --surface:#111826; --surface-2:#182135;
+  --ink:#E6EBF3; --ink-2:#BFC8D8; --muted:#8E99AD;
+  --rule:#243047; --rule-strong:#35445F;
+  --link:#8FA8FF;
+  --p-capital:#E2B43F; --p-tech:#86A2FF; --p-res:#EE8A5E; --p-life:#5DC27F; --p-research:#B596F2;
+  --mark-base:#E6EBF3;
+}
+.p-capital{--pc:var(--p-capital)} .p-tech{--pc:var(--p-tech)} .p-res{--pc:var(--p-res)} .p-life{--pc:var(--p-life)}
+
+@media (prefers-reduced-motion: no-preference){ html{scroll-behavior:smooth} }
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--link);text-underline-offset:3px}
+a:focus-visible{outline:2px solid var(--link);outline-offset:2px;border-radius:2px}
+p{margin:0 0 12px}
+b,strong{font-weight:600}
+svg.mark{display:block;flex:none}
+.mark .base{fill:var(--mark-base)}
+.mark .x{fill:var(--gold)}
+.mark .lit-capital{fill:var(--gold)}
+.mark .lit-tech{fill:var(--p-tech)}
+.mark .lit-res{fill:var(--p-res)}
+.mark .lit-life{fill:var(--p-life)}
+
+.page{max-width:1180px;margin:0 auto;padding-inline:20px;padding-block:40px 80px;display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+main{min-width:0;max-width:900px}
+
+/* Contents */
+.toc .label{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:4px 16px}
+.toc a{color:var(--ink-2);text-decoration:none;font-size:.88rem}
+.toc a:hover{color:var(--link)}
+@media (min-width:1060px){
+  .page{grid-template-columns:190px minmax(0,1fr);gap:56px}
+  .toc{position:sticky;top:calc(env(safe-area-inset-top,0px) + 40px);align-self:start}
+  .toc ol{flex-direction:column;gap:7px;border-left:1px solid var(--rule);padding-left:14px}
+}
+
+/* Masthead */
+.mast{padding-block:0 36px}
+.eyebrow-row{display:flex;align-items:center;gap:12px}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.mast h1{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:clamp(2.1rem,6vw,3.3rem);line-height:1.04;letter-spacing:-.01em;margin:14px 0 16px;text-wrap:balance}
+.lede{font-size:1.12rem;max-width:60ch;color:var(--ink-2)}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px 24px;margin:28px 0 0;padding-top:18px;border-top:1px solid var(--rule)}
+.meta dt,.lbl{font-family:var(--mono);font-size:.7rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.meta dd{margin:2px 0 0;font-size:.92rem}
+.thesis{margin-top:26px;padding:18px 20px;background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--gold)}
+.thesis p{margin:6px 0 0;font-family:var(--display);font-stretch:108%;font-weight:600;font-size:1.12rem;line-height:1.45;color:var(--ink);max-width:62ch}
+
+/* Sections */
+section{padding-block:44px 4px;border-top:1px solid var(--rule);scroll-margin-top:16px}
+h2{font-family:var(--display);font-stretch:115%;font-weight:750;font-size:clamp(1.45rem,2.6vw,1.8rem);line-height:1.2;letter-spacing:-.005em;margin:0 0 10px;text-wrap:balance}
+h3{text-wrap:balance}
+.intro{max-width:65ch;color:var(--ink-2);margin:0 0 24px}
+
+/* Loop */
+.loop{display:grid;grid-template-columns:minmax(0,1fr) 112px minmax(0,1fr) 112px minmax(0,1fr);align-items:stretch}
+.stage{background:var(--surface);border:1px solid var(--rule-strong);padding:14px 16px;display:flex;flex-direction:column;gap:10px}
+.stage-name{font-family:var(--display);font-stretch:125%;font-weight:800;font-size:1.2rem;letter-spacing:.06em;text-transform:uppercase}
+.stage-note{font-size:.85rem;color:var(--muted);margin-top:-6px}
+.chiprow{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--rule-strong);background:var(--surface);padding:3px 8px 3px 5px;font-family:var(--display);font-stretch:112%;font-weight:650;font-size:.76rem;letter-spacing:.03em;color:var(--ink);text-decoration:none;line-height:1.3}
+a.chip:hover{border-color:var(--ink)}
+.chip.plain{padding-left:8px}
+.flow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:8px 6px;text-align:center;font-size:.76rem;line-height:1.35;color:var(--ink-2)}
+.flow svg{width:56px;height:14px;color:var(--rule-strong);flex:none}
+.flow path{fill:none;stroke:currentColor;stroke-width:2}
+.return{margin-top:12px;display:flex;align-items:center;gap:12px;border:1px dashed var(--rule-strong);background:var(--surface-2);padding:10px 14px;font-size:.88rem;color:var(--ink-2)}
+.return svg{width:30px;height:22px;flex:none;color:var(--muted)}
+.return path{fill:none;stroke:currentColor;stroke-width:2}
+.return b{font-family:var(--display);font-stretch:112%;letter-spacing:.04em;color:var(--ink)}
+@media (max-width:760px){
+  .loop{grid-template-columns:minmax(0,1fr)}
+  .flow{flex-direction:row;justify-content:flex-start;padding:10px 4px;text-align:left}
+  .flow svg{transform:rotate(90deg);width:40px}
+}
+
+/* Tables */
+.tablewrap{overflow-x:auto;background:var(--surface);border:1px solid var(--rule)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{text-align:left;font-family:var(--mono);font-weight:500;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding:12px 14px;border-bottom:1px solid var(--rule-strong);white-space:nowrap;vertical-align:bottom}
+td{padding:11px 14px;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--mono);color:var(--muted);font-variant-numeric:tabular-nums}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:center}
+th.num{text-align:center}
+td.tot{font-family:var(--display);font-stretch:112%;font-weight:750;font-size:1.02rem;font-variant-numeric:tabular-nums;text-align:center}
+td.sec{white-space:nowrap}
+td.sec a{display:inline-flex;align-items:center;gap:8px;color:var(--ink);text-decoration:none;font-family:var(--display);font-stretch:112%;font-weight:700;letter-spacing:.03em;font-size:.88rem}
+td.sec a:hover{color:var(--link)}
+td.start{font-family:var(--mono);font-size:.78rem;color:var(--ink-2)}
+.order{min-width:720px}
+.score{min-width:600px}
+.legend{margin:12px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:6px 20px;font-size:.84rem;color:var(--ink-2)}
+.legend b{font-family:var(--mono);font-weight:500;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.callout{margin-top:20px;padding:14px 18px;background:var(--surface-2);font-size:.95rem}
+.callout p{margin:0;max-width:70ch}
+
+/* Concepts */
+.arc{margin-top:34px}
+.arc:first-of-type{margin-top:0}
+.arc > h3{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 14px;font-family:var(--display);font-stretch:125%;font-weight:800;font-size:1.25rem;letter-spacing:.06em;text-transform:uppercase;margin:0 0 14px}
+.arc > h3 small{font-family:var(--body);font-stretch:100%;font-weight:400;font-size:.9rem;letter-spacing:0;text-transform:none;color:var(--muted)}
+.cards{display:grid;gap:14px}
+.concept{background:var(--surface);border:1px solid var(--rule);padding:18px 20px;scroll-margin-top:16px}
+.c-head{display:flex;justify-content:space-between;align-items:center;gap:8px 14px;flex-wrap:wrap}
+.c-title{display:flex;align-items:center;gap:10px;min-width:0}
+.concept h4{margin:0;font-family:var(--display);font-stretch:118%;font-weight:750;font-size:1.15rem;letter-spacing:.03em}
+.c-pillar{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pc);display:block;margin-top:1px}
+.tags{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:var(--mono);font-size:.72rem;color:var(--ink-2);border:1px solid var(--rule-strong);padding:1px 8px;white-space:nowrap}
+.tag.rank{background:var(--surface-2);color:var(--ink);font-weight:500}
+.c-concept{margin:14px 0 0;font-size:1.04rem;line-height:1.55;color:var(--ink);max-width:68ch}
+.concept dl{display:grid;grid-template-columns:150px minmax(0,1fr);gap:10px 20px;margin:16px 0 0;padding-top:14px;border-top:1px solid var(--rule)}
+.concept dt{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:4px}
+.concept dd{margin:0;font-size:.93rem;min-width:0;color:var(--ink-2)}
+.concept dd ol{margin:0;padding-left:1.3em}
+.concept dd li{margin-bottom:4px;padding-left:2px}
+.concept dd li::marker{font-family:var(--mono);color:var(--muted);font-size:.85em}
+.names{display:flex;flex-wrap:wrap;gap:4px 14px}
+.bname{font-family:var(--mono);font-weight:500;font-size:.84rem;color:var(--ink)}
+.check{font-size:.9rem}
+@media (max-width:640px){
+  .concept dl{grid-template-columns:minmax(0,1fr);gap:2px}
+  .concept dd{margin-bottom:10px}
+}
+
+/* Lists */
+.changes,.nextlist{margin:0;padding-left:1.6em;max-width:70ch}
+.changes li,.nextlist li{margin-bottom:10px;padding-left:4px}
+.changes li::marker,.nextlist li::marker{font-family:var(--mono);color:var(--muted);font-size:.85rem}
+.changes span{display:block;color:var(--ink-2);font-size:.93rem}
+.nextlist .who{font-family:var(--mono);font-weight:500;font-size:.8rem;color:var(--ink);margin-right:8px}
+
+.notes{margin-top:56px;padding-top:18px;border-top:1px solid var(--rule);font-size:.84rem;color:var(--muted)}
+.notes ul{margin:8px 0 0;padding-left:1.2em;max-width:75ch}
+.notes li{margin-bottom:5px}
+</style>
+
+<div class="page">
+  <nav class="toc" aria-label="Contents">
+    <p class="label">Contents</p>
+    <ol>
+      <li><a href="#loop">The loop</a></li>
+      <li><a href="#order">Build order</a></li>
+      <li><a href="#scorecard">Scorecard</a></li>
+      <li><a href="#concepts">The ten concepts</a></li>
+      <li><a href="#changes">Blueprint changes</a></li>
+      <li><a href="#next">Next 30 days</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <header class="mast">
+      <div class="eyebrow-row"><span id="group-mark"></span><span class="eyebrow">SPYONAX GROUP · Sector concepts · Companion to Blueprint draft 1</span></div>
+      <h1>SPYONAX Sector Concepts</h1>
+      <p class="lede">The strongest business concept for each of the ten sectors, how they connect from Earth to Markets to Space, and the order to build them in.</p>
+      <dl class="meta">
+        <div><dt>Updated</dt><dd id="updated"></dd></div>
+        <div><dt>Built from</dt><dd id="source"></dd></div>
+        <div><dt>Names</dt><dd>Only names already in the Blueprint</dd></div>
+        <div><dt>Status</dt><dd>Recommendations for founder review</dd></div>
+      </dl>
+      <div class="thesis"><div class="lbl">The one idea</div><p id="thesis"></p></div>
+    </header>
+
+    <section id="loop">
+      <h2>From Earth to Markets to Space</h2>
+      <p class="intro">The tagline describes one loop. Ground data flows into the markets, market profits pay for the long builds, and satellites watch the ground. The build order runs the other way round: start with Markets, where your code and data already exist.</p>
+      <div class="loop" id="loop-grid"></div>
+      <div class="return" id="loop-return"></div>
+    </section>
+
+    <section id="order">
+      <h2>Build order</h2>
+      <p class="intro">Each heavy sector enters through a data product first, as the Blueprint's roadmap intends. The order follows the scorecard, adjusted for each sector's gate.</p>
+      <div class="tablewrap">
+        <table class="order">
+          <thead><tr><th>#</th><th>Sector</th><th>Best concept</th><th>First money from</th><th>Starts</th></tr></thead>
+          <tbody id="order-body"></tbody>
+        </table>
+      </div>
+      <div class="callout"><p id="three"></p></div>
+    </section>
+
+    <section id="scorecard">
+      <h2>Scorecard</h2>
+      <p class="intro">My scoring from 1 to 5, where 5 is best, for each sector's entry concept rather than its full end state. Sorted by total out of 25.</p>
+      <div class="tablewrap">
+        <table class="score">
+          <thead id="score-head"></thead>
+          <tbody id="score-body"></tbody>
+        </table>
+      </div>
+      <ul class="legend" id="legend"></ul>
+    </section>
+
+    <section id="concepts">
+      <h2>The ten concepts</h2>
+      <p class="intro">Grouped by the tagline. Each card names the flagship business from the Blueprint, how it makes money, what the first 90 days look like, and the gate it must pass before the heavy build.</p>
+      <div id="arcs"></div>
+    </section>
+
+    <section id="changes">
+      <h2>Changes I'd make to the Blueprint</h2>
+      <p class="intro">Each of these is your call. None changes a name or a naming rule.</p>
+      <ol class="changes" id="changes-list"></ol>
+    </section>
+
+    <section id="next">
+      <h2>Next 30 days</h2>
+      <ol class="nextlist" id="next-list"></ol>
+    </section>
+
+    <footer class="notes">
+      <b>Notes</b>
+      <ul id="notes-list"></ul>
+    </footer>
+  </main>
+</div>
+
+<script>
+const DATA = {"updated": "27 September 2026", "blueprint": {"title": "SPYONAX Group Blueprint", "draft": "Working draft 1, 26 September 2026", "url": "https://claude.ai/artifact/FGWnhh76tXPnG2i9nNkMMx"}, "thesis": "Every sector starts with a data product built on SPYONAX DATA. That data makes TRADING smarter, TRADING's profits pay for the physical builds, and satellites close the loop by watching the ground.", "three": "If you build only three, build TRADING for cash, TECHNOLOGY for the data spine, and SPACE through EARTH OBSERVATION. Together they cover Markets and Space, and they reach Earth through satellite data before you own any land, plant or mine.", "pillars": {"capital": "Capital", "tech": "Technology", "res": "Resources", "life": "Life"}, "arcs": [{"id": "earth", "name": "Earth", "note": "Real assets and ground truth", "flow": "Ground data, sensors and collateral"}, {"id": "markets", "name": "Markets", "note": "Data becomes signals, capital and fees", "flow": "Profits and fees pay for the long builds"}, {"id": "space", "name": "Space", "note": "Sees every sector from orbit", "flow": "EARTH OBSERVATION watches crops, mines, sites and grids"}], "criteria": [["fit", "Fit", "Uses skills and code you already have"], ["speed", "Speed", "Time to first revenue"], ["capital", "Capital-light", "Little money needed to start"], ["rules", "Light rules", "Little regulation to start"], ["value", "Group value", "How much it feeds other sectors"]], "sectors": [{"id": "trading", "name": "SPYONAX TRADING", "short": "TRADING", "pillar": "capital", "arc": "markets", "order": 1, "start": "Now · Phase 1", "headline": "Bots run as one gated prop desk", "firstMoney": "Trading profit on group capital", "concept": "Run every bot as one prop desk. QRL researches strategies, a fixed gate decides which go live, and capital goes only to strategies that keep passing it.", "flagship": ["SPYONAX QUANT", "SPYONAX ALGO (internal)"], "customers": "No outside customers. The desk trades group capital only, as the Blueprint requires.", "money": "Trading profit on group capital.", "edge": "Your bots already run on Dhan, Delta Exchange and Binance. QRL's research streams (microstructure, options, volatility, regimes) give all of them one validation process.", "first90": ["One risk engine across every bot: exposure, margin, and a group-wide daily loss limit with a kill switch.", "A strategy register with a four-step gate: backtest, paper, small live, scaled.", "Monthly profit attribution by desk and strategy. Retire any strategy that fails its gate.", "Separate books for Indian F&O and crypto, because they are taxed differently."], "gate": "12 months of audited live results inside the drawdown limit. That is the Blueprint's trigger for Phase 2 and FINANCE.", "kpi": "Return per unit of maximum drawdown, by strategy. Share of capital in strategies that passed the gate.", "risk": "Backtests that fail live. Treat every new strategy as unproven until it passes paper and small live.", "check": "RBI's principal-business (50-50) test, as the Blueprint notes. Crypto gains are taxed at a flat 30% with 1% TDS.", "feeds": ["CAPITAL", "FINANCE", "TECHNOLOGY"], "scores": {"fit": 5, "speed": 5, "capital": 4, "rules": 3, "value": 5}}, {"id": "technology", "name": "SPYONAX TECHNOLOGY", "short": "TECHNOLOGY", "pillar": "tech", "arc": "markets", "order": 2, "start": "Now · Phase 1", "headline": "One data spine, with an API to sell", "firstMoney": "API subscriptions", "concept": "Build one data spine for the group. SPYONAX DATA collects once, every sector and QRL reads from it, and SPYONAX API sells the parts outsiders will pay for.", "flagship": ["SPYONAX DATA", "SPYONAX API", "SPYONAX AI"], "customers": "TRADING first. Then quant developers, researchers and fintechs who want clean derivatives history through an API, with no recommendations attached.", "money": "API subscriptions and dataset licences.", "edge": "Your data bots already collect crypto options and futures data. A long, clean history is hard for anyone else to copy.", "first90": ["One schema and one store for every bot's data, with automated quality checks.", "An internal API that TRADING and QRL use for all research.", "Pick one dataset with outside demand, such as crypto options history with implied volatility, and package it with documentation.", "Read each exchange's terms before reselling its data."], "gate": "A first paying API customer within 9 months of launch. Otherwise keep DATA internal.", "kpi": "Number of sectors reading from SPYONAX DATA. External annual recurring revenue.", "risk": "Building a platform no outsider pays for. Keep the external product narrow.", "check": "Exchange data licences and API terms (NSE data needs a licence to redistribute). DPDP Act, 2023 for any personal data.", "feeds": ["All sectors"], "scores": {"fit": 5, "speed": 4, "capital": 5, "rules": 4, "value": 5}}, {"id": "space", "name": "SPYONAX SPACE", "short": "SPACE", "pillar": "tech", "arc": "space", "order": 3, "start": "EO Phase 2 · satellites Phase 7", "headline": "Satellite answers before satellites", "firstMoney": "Earth-observation analytics subscriptions", "concept": "Sell satellite answers before building satellites. SPYONAX EARTH OBSERVATION turns bought-in imagery into crop, mine, site and grid intelligence. SPYONAX SATELLITES follows only when customers need data nobody sells.", "flagship": ["SPYONAX EARTH OBSERVATION", "SPYONAX SATELLITES (later)"], "customers": "AGRI, MINING, LAND, ENERGY and QRL inside the group. Crop insurers, commodity traders, lenders and state agencies outside it.", "money": "Analytics subscriptions, per-area reports, and access through SPYONAX API.", "edge": "Ground truth from AGRITECH calibrates models for India's small fields, and QRL tests which signals actually move markets.", "first90": ["One district and one crop, using free Sentinel-2 optical imagery plus Sentinel-1 radar, which sees through monsoon cloud.", "Acreage and crop-health maps, checked against official estimates.", "Show the maps to one insurer and one lender."], "gate": "Satellites (Phase 7) only with paying demand that commercial imagery can't meet, IN-SPACe authorisation, and the capital to build.", "kpi": "Accuracy against official crop estimates. Number of paying EO customers.", "risk": "General satellite analytics is crowded. Win on India-specific ground truth and narrow questions.", "check": "IN-SPACe authorisation under the Indian Space Policy, 2023 for satellites. India's geospatial guidelines and each imagery provider's licence terms.", "feeds": ["AGRI", "MINING", "LAND", "ENERGY", "TRADING"], "scores": {"fit": 3, "speed": 3, "capital": 4, "rules": 4, "value": 5}}, {"id": "energy", "name": "SPYONAX ENERGY", "short": "ENERGY", "pillar": "res", "arc": "earth", "order": 4, "start": "Forecasting Phase 2–3 · plants Phase 4", "headline": "Forecast power, then generate it", "firstMoney": "Forecasting fees per megawatt", "concept": "Forecast power before generating it. SPYONAX GRID sells solar and wind generation forecasts built with QRL's forecasting methods and satellite cloud data. SPYONAX SOLAR builds plants on LAND sites once buyers have signed.", "flagship": ["SPYONAX GRID", "SPYONAX SOLAR", "SPYONAX ENERGY STORAGE"], "customers": "Wind and solar generators, who must submit generation schedules and pay for deviations from them. Later, industrial buyers of green power.", "money": "Forecasting fees per megawatt. Later, long-term power purchase agreements.", "edge": "Forecasting generation is a time-series problem like the ones QRL already solves. EARTH OBSERVATION adds cloud imagery for short-range solar forecasts.", "first90": ["Backtest a day-ahead forecast for two or three solar and wind sites with public output data.", "Compare its error with the deviation bands generators are charged on.", "Pitch one generator or scheduling agency."], "gate": "Plants (Phase 4) only when LAND has a site and a buyer has signed a power purchase agreement.", "kpi": "Forecast error against actual output. Megawatts under forecasting contracts.", "risk": "Established forecasting firms. Later, slow payments and open-access rules that differ by state.", "check": "Forecasting, scheduling and deviation rules of the central and state electricity commissions. Open-access rules for selling power to industry.", "feeds": ["LAND", "INDUSTRIES", "TRADING"], "scores": {"fit": 4, "speed": 3, "capital": 3, "rules": 3, "value": 4}}, {"id": "agri", "name": "SPYONAX AGRI", "short": "AGRI", "pillar": "life", "arc": "earth", "order": 5, "start": "AGRITECH Phase 3 (can start in 2)", "headline": "Crop intelligence that collects ground truth", "firstMoney": "Per-hectare fees from FPOs and insurers", "concept": "Software before farmland. SPYONAX AGRITECH gives farmer producer organisations, insurers and lenders field-level crop intelligence, and collects the ground truth that makes EARTH OBSERVATION accurate.", "flagship": ["SPYONAX AGRITECH", "SPYONAX COLD CHAIN (next)"], "customers": "Farmer producer organisations (FPOs), crop insurers, agri lenders and input companies. Farmers get advice free on WhatsApp, in their own language.", "money": "Per-hectare, per-season fees paid by the institution.", "edge": "EARTH OBSERVATION, DATA and AI LAB are already in place. Each season's harvest data makes the models better, and no one can buy that history.", "first90": ["One FPO, 500 to 1,000 farmers, one crop, one district.", "Collect geotagged field photos, sowing dates and harvest yields.", "Ask for a paid pilot from the start."], "gate": "Paying customers for two seasons. Then use the post-harvest loss data to choose where COLD CHAIN pays.", "kpi": "Paid hectares. Yield-forecast error against the actual harvest.", "risk": "Farmers rarely pay for advice, so charge institutions instead.", "check": "DPDP Act, 2023 consent for farmer data. FSSAI and APEDA later, for foods and exports.", "feeds": ["SPACE", "FINANCE", "TRADING"], "scores": {"fit": 2, "speed": 3, "capital": 3, "rules": 4, "value": 4}}, {"id": "finance", "name": "SPYONAX FINANCE", "short": "FINANCE", "pillar": "capital", "arc": "markets", "order": 6, "start": "Phase 2, when the gate is met", "headline": "A regulated quant fund", "firstMoney": "Fund management and performance fees", "concept": "Offer QRL's proven strategies to outside investors through a regulated quant fund, and only after the group's own money has proven them.", "flagship": ["SPYONAX ASSET MANAGEMENT", "SPYONAX WEALTH (later)"], "customers": "High-net-worth investors, family offices and institutions who meet SEBI's minimum investment.", "money": "Management fee and performance fee.", "edge": "An audited live record from TRADING, run on the same risk engine the fund will use.", "first90": ["Brief counsel on the vehicle. A Category III AIF is the usual choice for derivatives-heavy quant strategies, and PMS is the alternative.", "Get TRADING's records audited.", "Write rules for conflicts between the prop desk and the fund, such as which book gets a trade first."], "gate": "The Blueprint's Phase 2 gate: an audited record, an agreed licence route, and capital for the net-worth requirement. Most outside investors want two to three years of record.", "kpi": "Assets under management. Fee income against compliance cost.", "risk": "Compliance costs arrive before assets do.", "check": "SEBI registration for the fund or PMS, in its own licensed entity. Hold words like Asset Management until the licence path is clear (rule N8).", "feeds": ["CAPITAL"], "scores": {"fit": 4, "speed": 2, "capital": 2, "rules": 1, "value": 4}}, {"id": "industries", "name": "SPYONAX INDUSTRIES", "short": "INDUSTRIES", "pillar": "res", "arc": "earth", "order": 7, "start": "Design Phase 3–4 · factory Phase 4", "headline": "Electronics the group needs first", "firstMoney": "Sensor sales to group sectors", "concept": "Design the electronics the group needs first: field sensors, battery management and power electronics. Sell them to outside buyers once they work inside the group.", "flagship": ["SPYONAX ELECTRONICS", "SPYONAX MANUFACTURING (later)"], "customers": "AGRI, ENERGY, LAND and SPACE inside the group. Outside equipment makers later.", "money": "Product sales and design services.", "edge": "Guaranteed internal demand gives the first volume. Government electronics incentive schemes support manufacturing in India.", "first90": ["One product: a low-cost sensor node for fields and warehouses.", "Design it in-house and build it with a contract manufacturer.", "Pilot it with AGRITECH and WAREHOUSING."], "gate": "An own factory only with steady outside orders and an INDUSTRIAL PARKS site ready.", "kpi": "Units shipped. Gross margin per unit.", "risk": "Hardware ties up cash, and cheap imports set the price.", "check": "BIS certification for regulated electronics. A factory licence and pollution-control consent for an own plant.", "feeds": ["AGRI", "ENERGY", "LAND", "SPACE"], "scores": {"fit": 2, "speed": 2, "capital": 2, "rules": 3, "value": 3}}, {"id": "land", "name": "SPYONAX LAND", "short": "LAND", "pillar": "res", "arc": "earth", "order": 8, "start": "Phase 3", "headline": "A land bank that earns rent", "firstMoney": "Warehouse rent", "concept": "Build a land bank that earns while it waits. SPYONAX WAREHOUSING and INDUSTRIAL PARKS collect rent now and hold the sites that SOLAR and INDUSTRIES will need later.", "flagship": ["SPYONAX WAREHOUSING", "SPYONAX INDUSTRIAL PARKS"], "customers": "Logistics, e-commerce and manufacturing tenants, plus the group's own ENERGY, INDUSTRIES and AGRI cold chain.", "money": "Lease rent, plus land value over time.", "edge": "Site selection from EARTH OBSERVATION and DATA, covering roads, substations and flood risk. The group can be its own anchor tenant.", "first90": ["A site-selection model on satellite and public data, before buying anything.", "One build-to-suit warehouse with a tenant signed before construction starts."], "gate": "The Blueprint's gate of surplus capital, plus a signed tenant for every building.", "kpi": "Occupancy. Rental yield on cost.", "risk": "Capital-heavy and slow, with a risk of land-title disputes.", "check": "Title checks, land-use conversion approvals, state limits on buying agricultural land, and RERA for anything sold to buyers.", "feeds": ["ENERGY", "INDUSTRIES", "AGRI"], "scores": {"fit": 1, "speed": 2, "capital": 1, "rules": 2, "value": 4}}, {"id": "mining", "name": "SPYONAX MINING", "short": "MINING", "pillar": "res", "arc": "earth", "order": 9, "start": "Data Phase 4 · mines Phase 6", "headline": "Discover deposits, sell the rights", "firstMoney": "Prospect reports for auction bidders", "concept": "Find deposits and sell the rights. SPYONAX EXPLORATION maps critical-mineral targets from satellite and geological data and wins exploration licences. Partners run the mines.", "flagship": ["SPYONAX EXPLORATION", "SPYONAX CRITICAL MINERALS"], "customers": "Companies bidding in critical-mineral block auctions. Later, the buyers of licensed discoveries.", "money": "Prospect reports first. Later, a share of the value when a deposit found under an exploration licence goes to auction.", "edge": "EARTH OBSERVATION, AI LAB and MATERIALS LAB, plus open geoscience data from the Geological Survey of India.", "first90": ["A prospect model for one critical mineral in one geological belt, built from public data.", "Sell the report to one auction bidder."], "gate": "Mine operation (Phase 6) only with exploration capital, identified blocks, and an operating partner.", "kpi": "Targets confirmed by drilling. Paying bidders.", "risk": "Exploration succeeds rarely and takes years.", "check": "The 2023 amendment to the MMDR Act created exploration licences for critical and deep-seated minerals, so confirm the current terms. Forest and environmental clearances.", "feeds": ["INDUSTRIES", "ENERGY"], "scores": {"fit": 2, "speed": 1, "capital": 3, "rules": 2, "value": 3}}, {"id": "medical", "name": "SPYONAX MEDICAL", "short": "MEDICAL", "pillar": "life", "arc": "earth", "order": 10, "start": "Phase 5, through VENTURES", "headline": "Enter through VENTURES", "firstMoney": "Returns on a VENTURES stake", "concept": "Enter through VENTURES before building anything. Take a stake in, or partner with, an Indian AI-diagnostics company, and build SPYONAX DIAGNOSTICS in-house only after hiring a medical leader.", "flagship": ["SPYONAX DIAGNOSTICS"], "customers": "Diagnostic labs, hospitals and government screening programmes.", "money": "Per-scan or per-site software licences.", "edge": "AI LAB and BIO LAB. This is the sector least connected to the Earth, Markets and Space loop, which is why a light entry fits.", "first90": ["Map the CDSCO route for diagnostic software, which is regulated as a medical device.", "Shortlist three to five AI-diagnostics startups for a VENTURES stake.", "Pick one narrow screening use case."], "gate": "The Blueprint's gate: medical and regulatory leaders hired, and the CDSCO route mapped.", "kpi": "CDSCO-approved products. Scans per month.", "risk": "Long approvals, clinical liability, and strong incumbents.", "check": "CDSCO rules for software as a medical device. Clinical-trial and ethics-committee approvals.", "feeds": ["CAPITAL"], "scores": {"fit": 1, "speed": 1, "capital": 2, "rules": 1, "value": 2}}], "changes": [["Commit EARTH OBSERVATION to Phase 2.", "The Blueprint lets it begin early. Make it a commitment, because it needs no land or licence and it serves QRL as well as AGRI."], ["Give ENERGY a data entry in Phase 2 or 3.", "Generation forecasting under SPYONAX GRID uses the same skills as QRL and needs no land."], ["Bring MEDICAL in through SPYONAX VENTURES first.", "It is the sector with the weakest link to the rest of the group and the heaviest regulation."], ["Set MINING's goal as discovery.", "Win exploration licences and let partners run the mines."], ["Write a capital policy for SPYONAX CAPITAL.", "Sweep a fixed share of TRADING's realised profit to Holdings each quarter, keep 12 months of group runway in cash, and release capital to a sector only when its gate is met."]], "next30": [["TRADING", "Build the risk engine, the kill switch and the strategy register."], ["TECHNOLOGY", "Put all bot data in one schema, pick the first outside dataset, and read each exchange's data terms."], ["Brand", "Commission the SPYONAX clearance search (Blueprint protection step 1) before anything goes public."], ["Company", "Ask your CA about RBI's 50-50 test and whether TRADING needs its own company from day one (Blueprint decision 3)."], ["SPACE", "Prototype a Sentinel-1 and Sentinel-2 crop map for one district over a weekend."]], "notes": ["Uses only names already in the SPYONAX Group Blueprint. None has been cleared yet (rule N9).", "Scores are my judgement from what I could see of the group's current work.", "Regulatory lines are pointers for your CA, company secretary and lawyer, not legal advice. Rules change, so confirm current requirements before acting."]};
+
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const $ = id => document.getElementById(id);
+
+const DIAMONDS = {
+  top: "M50 0L70.76 20.76L50 41.51L29.24 20.76Z",
+  right: "M100 50L79.24 70.76L58.49 50L79.24 29.24Z",
+  bottom: "M50 100L29.24 79.24L50 58.49L70.76 79.24Z",
+  left: "M0 50L20.76 29.24L41.51 50L20.76 70.76Z"
+};
+const SIDE = {tech: "top", capital: "right", res: "bottom", life: "left"};
+const X = ["M76.59 26.59L26.59 76.59L23.41 73.41L73.41 23.41Z", "M76.59 73.41L26.59 23.41L23.41 26.59L73.41 76.59Z"];
+
+// The group symbol, with the diamond on the sector's pillar side lit, as in the SPYONAX logo system.
+function mark(pillar, size, label) {
+  const lit = SIDE[pillar];
+  const d = Object.entries(DIAMONDS).map(([side, path]) =>
+    `<path class="${side === lit ? "lit-" + pillar : "base"}" d="${path}"/>`).join("");
+  const x = X.map(p => `<path class="x" d="${p}"/>`).join("");
+  const a11y = label ? `role="img" aria-label="${esc(label)}"` : `aria-hidden="true"`;
+  return `<svg class="mark" viewBox="0 0 100 100" width="${size}" height="${size}" ${a11y}>${d}${x}</svg>`;
+}
+
+const bySector = Object.fromEntries(DATA.sectors.map(s => [s.short, s]));
+const total = s => Object.values(s.scores).reduce((a, b) => a + b, 0);
+
+function chip(name) {
+  const s = bySector[name];
+  if (s) return `<a class="chip" href="#c-${s.id}">${mark(s.pillar, 14)}${esc(s.short)}</a>`;
+  if (name === "CAPITAL") return `<span class="chip">${mark("capital", 14)}CAPITAL</span>`;
+  return `<span class="chip plain">${esc(name)}</span>`;
+}
+
+/* Masthead */
+$("group-mark").innerHTML = mark(null, 34, "SPYONAX symbol");
+$("updated").textContent = DATA.updated;
+$("source").innerHTML = `<a href="${esc(DATA.blueprint.url)}">${esc(DATA.blueprint.title)}</a>, ${esc(DATA.blueprint.draft.charAt(0).toLowerCase() + DATA.blueprint.draft.slice(1))}`;
+$("thesis").textContent = DATA.thesis;
+$("three").innerHTML = `<b>If you build only three.</b> ${esc(DATA.three.replace(/^If you build only three, build /, "Build "))}`;
+
+/* Loop */
+const arrow = `<svg viewBox="0 0 56 14" aria-hidden="true"><path d="M0 7H53M46 1L53 7L46 13"/></svg>`;
+$("loop-grid").innerHTML = DATA.arcs.map((a, i) => {
+  const secs = DATA.sectors.filter(s => s.arc === a.id).sort((x, y) => x.order - y.order);
+  const stage = `<div class="stage"><div class="stage-name">${esc(a.name)}</div><div class="stage-note">${esc(a.note)}</div>
+    <ul class="chiprow">${secs.map(s => `<li>${chip(s.short)}</li>`).join("")}</ul></div>`;
+  const flow = i < DATA.arcs.length - 1 ? `<div class="flow">${arrow}<span>${esc(a.flow)}</span></div>` : "";
+  return stage + flow;
+}).join("");
+const last = DATA.arcs[DATA.arcs.length - 1];
+$("loop-return").innerHTML = `<svg viewBox="0 0 30 22" aria-hidden="true"><path d="M28 11H3M9 5L3 11L9 17"/></svg>
+  <span><b>SPACE back to EARTH.</b> ${esc(last.flow)}.</span>`;
+
+/* Build order */
+const ordered = [...DATA.sectors].sort((a, b) => a.order - b.order);
+$("order-body").innerHTML = ordered.map(s => `<tr>
+  <td class="n">${s.order}</td>
+  <td class="sec"><a href="#c-${s.id}">${mark(s.pillar, 16)}${esc(s.short)}</a></td>
+  <td>${esc(s.headline)}</td>
+  <td>${esc(s.firstMoney)}</td>
+  <td class="start">${esc(s.start)}</td></tr>`).join("");
+
+/* Scorecard */
+$("score-head").innerHTML = `<tr><th>Sector</th>${DATA.criteria.map(c => `<th class="num">${esc(c[1])}</th>`).join("")}<th class="num">Total</th></tr>`;
+$("score-body").innerHTML = [...DATA.sectors].sort((a, b) => total(b) - total(a) || a.order - b.order).map(s => `<tr>
+  <td class="sec"><a href="#c-${s.id}">${mark(s.pillar, 16)}${esc(s.short)}</a></td>
+  ${DATA.criteria.map(c => `<td class="num">${s.scores[c[0]]}</td>`).join("")}
+  <td class="tot">${total(s)}</td></tr>`).join("");
+$("legend").innerHTML = DATA.criteria.map(c => `<li><b>${esc(c[1])}</b>${esc(c[2])}</li>`).join("");
+
+/* Concept cards */
+const card = s => `<article class="concept p-${s.pillar}" id="c-${s.id}">
+  <div class="c-head">
+    <div class="c-title">${mark(s.pillar, 34)}<div><h4>${esc(s.name)}</h4><span class="c-pillar">${esc(DATA.pillars[s.pillar])} pillar</span></div></div>
+    <div class="tags"><span class="tag rank">#${s.order} to build</span><span class="tag">${esc(s.start)}</span></div>
+  </div>
+  <p class="c-concept">${esc(s.concept)}</p>
+  <dl>
+    <dt>Flagship</dt><dd><div class="names">${s.flagship.map(n => `<span class="bname">${esc(n)}</span>`).join("")}</div></dd>
+    <dt>Customers</dt><dd>${esc(s.customers)}</dd>
+    <dt>Money</dt><dd>${esc(s.money)}</dd>
+    <dt>Group edge</dt><dd>${esc(s.edge)}</dd>
+    <dt>First 90 days</dt><dd><ol>${s.first90.map(t => `<li>${esc(t)}</li>`).join("")}</ol></dd>
+    <dt>Gate to scale</dt><dd>${esc(s.gate)}</dd>
+    <dt>Key number</dt><dd>${esc(s.kpi)}</dd>
+    <dt>Biggest risk</dt><dd>${esc(s.risk)}</dd>
+    <dt>Check with counsel</dt><dd class="check">${esc(s.check)}</dd>
+    <dt>Feeds</dt><dd><ul class="chiprow">${s.feeds.map(f => `<li>${chip(f)}</li>`).join("")}</ul></dd>
+  </dl>
+</article>`;
+$("arcs").innerHTML = DATA.arcs.map(a => {
+  const secs = DATA.sectors.filter(s => s.arc === a.id).sort((x, y) => x.order - y.order);
+  const count = secs.length === 1 ? "1 sector" : `${secs.length} sectors`;
+  return `<div class="arc"><h3>${esc(a.name)} <small>${count} · ${esc(a.note)}</small></h3>
+    <div class="cards">${secs.map(card).join("")}</div></div>`;
+}).join("");
+
+/* Lists */
+$("changes-list").innerHTML = DATA.changes.map(([t, d]) => `<li><b>${esc(t)}</b><span>${esc(d)}</span></li>`).join("");
+$("next-list").innerHTML = DATA.next30.map(([w, t]) => `<li><span class="who">${esc(w)}</span>${esc(t)}</li>`).join("");
+$("notes-list").innerHTML = DATA.notes.map(n => `<li>${esc(n)}</li>`).join("");
+</script>
