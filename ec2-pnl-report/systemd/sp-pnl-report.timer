@@ -1,0 +1,13 @@
+[Unit]
+Description=Send the SP bots daily P&L summary at 22:15 IST
+
+[Timer]
+# 22:15 IST, every day (XAUT trades on Saturdays too). Late enough that the day is
+# complete for every bot: the Indian bots stop at 15:50, XAUT settles at 16:00 UTC
+# (21:30 IST) and sends its own summary at 16:30 UTC (22:00 IST).
+OnCalendar=*-*-* 22:15 Asia/Kolkata
+# Catch up after a reboot or outage instead of skipping the day.
+Persistent=true
+
+[Install]
+WantedBy=timers.target
