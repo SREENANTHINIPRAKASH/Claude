@@ -1,0 +1,72 @@
+{
+  "title": "SP Bots",
+  "timezone": "Asia/Kolkata",
+  "archive_dir": "/opt/spbots/data/pnl_report",
+  "bots": [
+    {
+      "name": "SP Intraday Scalp · Engine A (dry run)",
+      "service": "sp-scalp.service",
+      "currency": "₹",
+      "trades": {
+        "format": "csv",
+        "path": "/opt/spbots/data/scalping/csv/trades_{date}.csv",
+        "pnl": "net",
+        "time": "exit_ts"
+      },
+      "log": "/opt/spbots/data/scalping/logs/bot_{date}.log"
+    },
+    {
+      "name": "SP Intraday · Engine B (dry run)",
+      "note": "Path assumed to follow the scalp bot's run/csv layout; confirm with --discover.",
+      "service": "sp-intraday.service",
+      "currency": "₹",
+      "trades": {
+        "format": "csv",
+        "path": "/opt/spbots/data/intraday/csv/trades_{date}.csv"
+      },
+      "log": "/opt/spbots/data/intraday/logs/intraday.err"
+    },
+    {
+      "name": "SP Stocks Grid Scalp (paper)",
+      "note": "Trade file path not known yet; confirm with --discover.",
+      "service": "sp-grid.service",
+      "currency": "₹",
+      "trades": {
+        "format": "csv",
+        "path": "/opt/spbots/data/grid/csv/trades_{date}.csv"
+      },
+      "log": "/opt/spbots/data/grid/logs/grid.err"
+    },
+    {
+      "name": "XAUT OPT (paper)",
+      "service": "sp-xaut-opt.service",
+      "currency": "$",
+      "trades": {
+        "format": "json",
+        "path": "/opt/spbots/data/scalping/opt/state/paper_ledger.json",
+        "list_key": "closed",
+        "pnl": "pnl",
+        "size": "size",
+        "risk": "risk",
+        "time": "closed"
+      },
+      "log": "/opt/spbots/data/scalping/opt/logs/xaut_opt_bot.log",
+      "heartbeat": "/opt/spbots/data/scalping/opt/state/health.json",
+      "heartbeat_max_age_min": 30
+    },
+    {
+      "name": "Gold S&R cash (paper)",
+      "note": "Turn on once you know where it runs: GOLD_DATA_DIR, default bot_data_final next to the bot file.",
+      "enabled": false,
+      "service": "",
+      "currency": "$",
+      "trades": {
+        "format": "jsonl",
+        "path": "/opt/spbots/gold/bot_data_final/gold_final_trades.jsonl",
+        "pnl": "pnl_usd",
+        "time": "closed"
+      },
+      "log": "/opt/spbots/gold/bot_data_final/gold_final_bot.log"
+    }
+  ]
+}

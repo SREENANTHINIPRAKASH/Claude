@@ -1,0 +1,32 @@
+[Unit]
+Description=SP bots daily P&L summary to Telegram (read-only, places no orders)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=spbot
+Group=spbot
+WorkingDirectory=/opt/spbots/deploy/pnl-report
+
+# Same secrets path as every bot unit. "-" so a box without fetch-secrets.sh still
+# sends, using /opt/spbots/.env or the environment instead.
+ExecStartPre=-+/opt/spbots/deploy/fetch-secrets.sh
+Environment=SP_ENV_PATH=/run/spbots/.env
+Environment=TZ=Asia/Kolkata
+Environment=PYTHONUNBUFFERED=1
+
+ExecStart=/usr/bin/python3 /opt/spbots/deploy/pnl-report/sp_pnl_report.py
+
+TimeoutStartSec=5min
+StandardOutput=append:/opt/spbots/data/pnl_report/pnl_report.out
+StandardError=append:/opt/spbots/data/pnl_report/pnl_report.err
+
+# Reads the bots' files; writes only its own archive folder.
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectHome=read-only
+ProtectSystem=strict
+ReadWritePaths=/opt/spbots/data/pnl_report
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+LockPersonality=yes
